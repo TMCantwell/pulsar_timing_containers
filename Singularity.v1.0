@@ -1,0 +1,24 @@
+BootStrap: yum
+OSVersion: 7
+MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/$basearch/
+Include: yum wget
+
+%post
+yum -y update
+yum -y install yum-utils
+yum -y groupinstall development
+yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+yum -y install build-essential curl git man vim autoconf libtool debootstrap squashfs-tools
+yum -y install python2-pip
+yum -y install python-devel
+mkdir Pulsar
+cd Pulsar
+git config --global http.postBuffer 4MB
+git clone git://git.code.sf.net/p/psrchive/code psrchive
+cd psrchive
+./bootstrap
+./packages/fftw.csh
+./configure
+make
+make install
+
