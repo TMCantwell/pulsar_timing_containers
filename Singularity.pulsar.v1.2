@@ -6,9 +6,9 @@ Include: yum wget
 
 %files
 
-GBNCC_J1911+37_period.fits /mnt
-J1911+37_t2.par /mnt
-1911+37_820MHz.std /mnt
+GBNCC_J1911+37_period.fits /scratch
+J1911+37_t2.par /scratch
+1911+37_820MHz.std /scratch
 
 %post
 yum -y update
@@ -42,5 +42,5 @@ for env in $PSRSOFT_USR/var/psrsoft/env/bash/* ; do . $env ; done
 export PATH=$PSRSOFT_USR/bin:$PATH
 
 %runscript
-pam -FT -e FT -E /mnt/J1911+37_t2.par /mnt/GBNCC_J1911+37_period.fits
-pat -s /mnt/1911+37_820MHz.std -f tempo2 /mnt/GBNCC_J1911+37_period.FT > toa.txt
+pam -FT -e FT -E /scratch/J1911+37_t2.par /scratch/GBNCC_J1911+37_period.fits
+pat -s /scratch/1911+37_820MHz.std -f tempo2 /scratch/GBNCC_J1911+37_period.FT > toa.txt
